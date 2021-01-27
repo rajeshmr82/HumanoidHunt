@@ -1,40 +1,20 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Tattoo {
     public Tattoo() {
         System.out.println("Tattoo");
     }
 
-    private static List<String> readInput() throws IOException {
-        File inputFile = new File(Objects.requireNonNull(Solution.class.getClassLoader().getResource("tattoo.txt")).getFile());
-        InputStream inputStream = new FileInputStream(inputFile);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-
-        List<String> input = new ArrayList<>();
-        while ((line = reader.readLine()) != null) {
-            input.add(line);
-        }
-
-        return input;
-    }
-
     public static String getPassword() {
         StringBuilder password = new StringBuilder();
 
         try {
-            var allChannels = readInput();
+            var allChannels = Utility.readInput("tattoo.txt");
             for (var channel:
                     allChannels) {
                 password.append(findPasswordCharacter(channel)) ;
-                System.out.println(password.toString());
             }
 
         } catch (IOException e) {
